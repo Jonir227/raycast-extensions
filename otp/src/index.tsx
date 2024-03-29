@@ -35,7 +35,7 @@ const processAttributedBody = (value: string) => {
   return result;
 };
 
-const OTP_REGEX = /(?<![,.-])\d{4,6}(?![,.-])/g;
+const OTP_REGEX = /(?<![,.-])\b\d{4,6}\b(?![,.-])/g;
 
 export default function Command() {
   const { data } = useSQL<{ text: string | null; attributedBody: string | null; date: string }>(
@@ -66,7 +66,7 @@ export default function Command() {
           subtitle={{ value: formatDistance(msg.date, new Date()) }}
           actions={
             <ActionPanel>
-              <ActionPanel.Section>{msg.otp && <Action.CopyToClipboard content={msg.otp} />}</ActionPanel.Section>
+              <ActionPanel.Section>{msg.text && <Action.CopyToClipboard content={msg.text} />}</ActionPanel.Section>
             </ActionPanel>
           }
         />
