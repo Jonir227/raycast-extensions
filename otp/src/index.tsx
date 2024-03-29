@@ -66,7 +66,7 @@ export default function Command() {
           subtitle={{ value: formatDistance(msg.date, new Date()) }}
           actions={
             <ActionPanel>
-              <ActionPanel.Section>{msg.text && <Action.CopyToClipboard content={msg.text} />}</ActionPanel.Section>
+              <ActionPanel.Section>{msg.otp && <Action.CopyToClipboard content={msg.otp} />}</ActionPanel.Section>
             </ActionPanel>
           }
         />
