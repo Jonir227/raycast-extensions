@@ -4,12 +4,11 @@ import { getMyIssueQuery } from "./query";
 import { useDeferredValue, useState } from "react";
 import { formatIssue } from "./utils";
 import { components } from "@octokit/openapi-types";
-import { format } from "date-fns";
+import { differenceInDays, format } from "date-fns";
 
 type DetailProps = components["schemas"]["issue-search-result-item"];
 
 const DetailComponent = (issue: DetailProps) => {
-  console.log(issue.assignee?.avatar_url);
   return (
     <Detail
       navigationTitle={issue.title}
@@ -57,6 +56,17 @@ const DetailComponent = (issue: DetailProps) => {
   );
 };
 
+const getIssueTintColor = (issue: DetailProps) => {
+  const days = differenceInDays(new Date(), issue.updated_at);
+  if (days < 30) {
+    return Color.Green;
+  }
+  if (days < 60) {
+    return Color.Yellow;
+  }
+  return Color.SecondaryText;
+};
+
 const Issues = () => {
   const [keyword, setKeyword] = useState("");
   const searchKeyword = useDeferredValue(keyword);
@@ -74,6 +84,7 @@ const Issues = () => {
               <Action.Push title="Show Details" target={<DetailComponent {...issue} />} />
             </ActionPanel>
           }
+          icon={{ source: Icon.ExclamationMark, tintColor: getIssueTintColor(issue) }}
         />
       ))}
     </List>
