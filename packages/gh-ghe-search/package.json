@@ -41,6 +41,7 @@
     "isomorphic-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "@octokit/openapi-types": "^22.2.0",
     "@raycast/eslint-config": "^1.0.8",
     "@types/node": "20.8.10",
     "@types/react": "18.3.3",

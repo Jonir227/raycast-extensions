@@ -1,0 +1,14 @@
+{
+  "name": "raycast-extensions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build --workspaces"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "./packages/*"
+  ]
+}
